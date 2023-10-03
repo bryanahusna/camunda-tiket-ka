@@ -33,6 +33,18 @@
       "key": "train_price",
       "readonly": false,
       "disabled": true
+    },
+    {
+      "label": "Seat Available",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_047kv4m",
+        "columns": null
+      },
+      "id": "Field_0u3uvd9",
+      "key": "train_seat_available",
+      "readonly": false,
+      "disabled": true
     }
   ],
   "type": "default",

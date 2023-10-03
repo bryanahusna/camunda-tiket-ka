@@ -11,8 +11,9 @@ public class Passenger {
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "paid_at", nullable = true)
-    private java.sql.Timestamp paidAt;
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id", nullable = true)
+    private Payment payment;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -22,12 +23,12 @@ public class Passenger {
     @JoinColumn(name = "train_schedule_id", nullable = false)
     private TrainSchedule trainSchedule;
 
-    public Timestamp getPaidAt() {
-        return paidAt;
+    public Payment getPayment() {
+        return payment;
     }
 
-    public void setPaidAt(Timestamp paidAt) {
-        this.paidAt = paidAt;
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public User getUser() {

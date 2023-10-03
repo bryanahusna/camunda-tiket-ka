@@ -1,10 +1,8 @@
 package com.komputasilayanan.tiketkereta.services;
 
-import com.komputasilayanan.tiketkereta.models.City;
-import com.komputasilayanan.tiketkereta.models.Passenger;
-import com.komputasilayanan.tiketkereta.models.TrainSchedule;
-import com.komputasilayanan.tiketkereta.models.User;
+import com.komputasilayanan.tiketkereta.models.*;
 import com.komputasilayanan.tiketkereta.repositories.*;
+import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
 import io.camunda.zeebe.spring.client.annotation.Variable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,9 @@ import java.util.*;
 
 @Component
 public class TrainService {
+    @Autowired
+    private ZeebeClient client;
+
     @Autowired
     private CityRepository cityRepo;
 
@@ -25,6 +26,9 @@ public class TrainService {
 
     @Autowired
     private PassengerRepository passengerRepo;
+
+    @Autowired
+    private PaymentRepository paymentRepo;
 
     @JobWorker(type = "getTrainDetail", autoComplete = true)
     public Map<String, Object> getTrainDetail(@Variable String origin, @Variable String destination, @Variable String departure_date){
@@ -69,6 +73,7 @@ public class TrainService {
         variables.put("train_schedule_id", trainSchedule.getId());
         variables.put("train_name", trainSchedule.getTrain().getName());
         variables.put("train_price", trainSchedule.getPrice());
+        variables.put("train_seat_available", trainSchedule.getCapacity() - trainSchedule.getPassengers().size());
 
         return variables;
     }
@@ -102,17 +107,52 @@ public class TrainService {
 
         // 3. Return response
         variables.put("seatAvailable", true);
+
         variables.put("passenger_id", passenger.getId());
         return variables;
     }
 
-    @JobWorker(type = "reduceAvailableSeat", autoComplete = true)
-    public Map<String, Object> reduceAvailableSeat(@Variable Integer passenger_id){
+    @JobWorker(type = "requestPaymentBill", autoComplete = true)
+    public void requestPaymentBill(@Variable Integer passenger_id){
+        client.newPublishMessageCommand()
+                .messageName("RequestPaymentBill")
+                .correlationKey("1")
+                .send();
+    }
+
+    @JobWorker(type = "receivePaymentBill", autoComplete = true)
+    public Map<String, Object> receivePaymentBill(@Variable Integer passenger_id, @Variable Integer paymentId){
         // Response variable
         HashMap<String, Object> variables = new HashMap<>();
 
-        // Return success
-        variables.put("reduceAvailableSeatSuccess", true);
+        // 1. Get passenger
+        Optional<Passenger> passengerOpt = passengerRepo.findById(passenger_id);
+        if (passengerOpt.isEmpty()) {
+            return variables;
+        }
+        Passenger passenger = passengerOpt.get();
+
+        // 2. Get payment
+        Optional<Payment> paymentOpt = paymentRepo.findById(paymentId);
+        if (paymentOpt.isEmpty()) {
+            return variables;
+        }
+        Payment payment = paymentOpt.get();
+
+        // 3. Update passenger
+        passenger.setPayment(payment);
+        passengerRepo.save(passenger);
+
+        // 4. Set and return variables
+        variables.put("paymentId", paymentId);
         return variables;
+    }
+
+    @JobWorker(type = "forwardPayment", autoComplete = true)
+    public void forwardPayment(@Variable Integer passenger_id, @Variable Integer paymentId){
+        client.newPublishMessageCommand()
+                .messageName("Pay")
+                .correlationKey("1")
+                .send();
     }
 }

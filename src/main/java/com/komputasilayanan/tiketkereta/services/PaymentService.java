@@ -1,10 +1,9 @@
 package com.komputasilayanan.tiketkereta.services;
 
 import com.komputasilayanan.tiketkereta.models.Passenger;
-import com.komputasilayanan.tiketkereta.repositories.CityRepository;
-import com.komputasilayanan.tiketkereta.repositories.PassengerRepository;
-import com.komputasilayanan.tiketkereta.repositories.TrainScheduleRepository;
-import com.komputasilayanan.tiketkereta.repositories.UserRepository;
+import com.komputasilayanan.tiketkereta.models.Payment;
+import com.komputasilayanan.tiketkereta.repositories.*;
+import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
 import io.camunda.zeebe.spring.client.annotation.Variable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,42 +15,48 @@ import java.util.*;
 @Component
 public class PaymentService {
     @Autowired
-    private CityRepository cityRepo;
+    private ZeebeClient client;
 
     @Autowired
-    private TrainScheduleRepository tsRepo;
-
-    @Autowired
-    private UserRepository userRepo;
-
-    @Autowired
-    private PassengerRepository passengerRepo;
+    private PaymentRepository paymentRepo;
 
     @JobWorker(type = "createPaymentBill", autoComplete = true)
-    public Map<String, Object> createPaymentBill(@Variable Integer passenger_id){
+    public Map<String, Object> createPaymentBill(){
         // Response variable
         HashMap<String, Object> variables = new HashMap<>();
 
+        // 1. create payment
+        Payment payment = new Payment();
+        payment.setStatus("UNPAID");
+        payment.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        payment = paymentRepo.save(payment);
+
         // Return success
-        variables.put("createPaymentSuccess", true);
+        variables.put("paymentId", payment.getId());
+        client.newPublishMessageCommand()
+                .messageName("PaymentBillCreated")
+                .correlationKey("1")
+                .variables(variables)
+                .send();
+
         return variables;
     }
 
     @JobWorker(type = "confirmPayment", autoComplete = true)
-    public Map<String, Object> confirmPayment(@Variable Integer passenger_id){
-        // Response variable
-        HashMap<String, Object> variables = new HashMap<>();
-
-        // Set payment success
-        Optional<Passenger> passengerOpt = passengerRepo.findById(passenger_id);
-        if (passengerOpt.isPresent()) {
-            Passenger passenger = passengerOpt.get();
-            passenger.setPaidAt(new Timestamp(System.currentTimeMillis()));
-            passengerRepo.save(passenger);
+    public void confirmPayment(@Variable Integer paymentId){
+        Optional<Payment> paymentOpt = paymentRepo.findById(paymentId);
+        if (paymentOpt.isEmpty()) {
+            return;
         }
 
-        // Return success
-        variables.put("confirmPaymentSuccess", true);
-        return variables;
+        Payment payment = paymentOpt.get();
+        payment.setStatus("PAID");
+        payment.setPaidAt(new Timestamp(System.currentTimeMillis()));
+        paymentRepo.save(payment);
+
+        client.newPublishMessageCommand()
+                .messageName("PaymentSuccess")
+                .correlationKey("1")
+                .send();
     }
 }
