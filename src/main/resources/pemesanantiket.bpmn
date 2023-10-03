@@ -291,13 +291,6 @@
       <bpmn:incoming>Flow_028q208</bpmn:incoming>
       <bpmn:outgoing>Flow_00mnu3b</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0jwj731" name="Membuat tagihan pembayaran">
-      <bpmn:extensionElements>
-        <zeebe:taskDefinition type="createPaymentBill" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0lusl5d</bpmn:incoming>
-      <bpmn:outgoing>Flow_1deb8e1</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_04djhx4" sourceRef="Activity_020lmgr" targetRef="Gateway_0f9lhi4" />
     <bpmn:exclusiveGateway id="Gateway_0f9lhi4">
       <bpmn:incoming>Flow_04djhx4</bpmn:incoming>
@@ -335,6 +328,13 @@
       <bpmn:incoming>Flow_1ikj51v</bpmn:incoming>
       <bpmn:outgoing>Flow_15f88tg</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0jwj731" name="Membuat tagihan pembayaran">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="createPaymentBill" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lusl5d</bpmn:incoming>
+      <bpmn:outgoing>Flow_1deb8e1</bpmn:outgoing>
+    </bpmn:serviceTask>
     <bpmn:textAnnotation id="TextAnnotation_1n7jugz">
       <bpmn:text>tempat duduk habis</bpmn:text>
     </bpmn:textAnnotation>

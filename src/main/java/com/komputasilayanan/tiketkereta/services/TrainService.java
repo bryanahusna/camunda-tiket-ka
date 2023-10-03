@@ -1,4 +1,4 @@
-package com.komputasilayanan.tiketkereta;
+package com.komputasilayanan.tiketkereta.services;
 
 import com.komputasilayanan.tiketkereta.models.City;
 import com.komputasilayanan.tiketkereta.models.Passenger;
