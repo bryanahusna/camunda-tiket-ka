@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0d9nzx9" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.15.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
+  <bpmn:collaboration id="Collaboration_Pemesanan_Tiket">
+    <bpmn:participant id="Pemesanan_KA_Participant" name="Pemesanan Tiket Kereta Api" processRef="Process_Pemesanan" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Pemesanan" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_0trk2it">{
+  "components": [
+    {
+      "text": "# Pemesanan Tiket Kereta Api",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0o2gpex",
+        "columns": null
+      },
+      "id": "Field_0ny639j"
+    },
+    {
+      "label": "Nama",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0lepzu3",
+        "columns": null
+      },
+      "id": "Field_00gvw1o",
+      "key": "name"
+    },
+    {
+      "label": "Kota Asal",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_18b70d2",
+        "columns": null
+      },
+      "id": "Field_0jzxmdp",
+      "key": "origin"
+    },
+    {
+      "label": "Kota Tujuan",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0qtlwhy",
+        "columns": null
+      },
+      "id": "Field_1myh0gu",
+      "key": "destination"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Tanggal Keberangkatan",
+      "label": "Date time",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1rqnxai",
+        "columns": null
+      },
+      "id": "Field_0s8y27n",
+      "key": "departure_date"
+    }
+  ],
+  "type": "default",
+  "id": "form_pemesanan_tiket",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_230u6f1">{
+  "components": [
+    {
+      "text": "# Kereta Tidak Ada",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0drr4o9",
+        "columns": null
+      },
+      "id": "Field_0dwv2pc"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0tp39zy",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_1vb5v54">{
+  "components": [
+    {
+      "text": "# Konfirmasi Kereta",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0ob0e0u",
+        "columns": null
+      },
+      "id": "Field_05y6e58"
+    },
+    {
+      "label": "Nama Kereta",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ukwqui",
+        "columns": null
+      },
+      "id": "Field_0nzuyha",
+      "key": "train_name",
+      "readonly": false,
+      "disabled": true
+    },
+    {
+      "label": "Harga",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0rosxk5",
+        "columns": null
+      },
+      "id": "Field_05n9hlf",
+      "key": "train_price",
+      "readonly": false,
+      "disabled": true
+    }
+  ],
+  "type": "default",
+  "id": "Form_01zvuy0",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_3jnllip">{
+  "components": [
+    {
+      "text": "# Tempat Duduk Kereta Habis",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0q65yd2",
+        "columns": null
+      },
+      "id": "Field_0lydtsh"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0a9wll3",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_3h5jsj4">{
+  "components": [
+    {
+      "text": "# Bayar Sekarang",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_1oi04np",
+        "columns": null
+      },
+      "id": "Field_0ywd2my"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1gi1jwv",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:laneSet id="LaneSet_07upcnu">
+      <bpmn:lane id="Lane_1j3yg7l" name="Pengguna">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1p7na05</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1c4zn7t</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0a64ksj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_18c0zrp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1oqw6ag</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1f18vyd</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_05xbwno</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_150gy5v</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1hqygn4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0m5u7mx" name="Layanan Kereta">
+        <bpmn:flowNodeRef>Activity_020lmgr</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0f38lc7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_09f8nuh</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0f9lhi4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1gf4n4v</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1e47y7h" name="Layanan Pembayaran">
+        <bpmn:flowNodeRef>Activity_0s4rlmf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0jwj731</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1785rm4</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_1p7na05" name="Mengisi data pemesanan">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_0trk2it" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1785rm4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0u5vqhe</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_020lmgr" name="Mengambil rincian kereta">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="getTrainDetail" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0u5vqhe</bpmn:incoming>
+      <bpmn:outgoing>Flow_04djhx4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1c4zn7t">
+      <bpmn:incoming>Flow_08udoz8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1785rm4" sourceRef="StartEvent_1" targetRef="Activity_1p7na05" />
+    <bpmn:sequenceFlow id="Flow_0u5vqhe" sourceRef="Activity_1p7na05" targetRef="Activity_020lmgr" />
+    <bpmn:sequenceFlow id="Flow_15f88tg" sourceRef="Activity_1hqygn4" targetRef="Activity_1gf4n4v" />
+    <bpmn:sequenceFlow id="Flow_08udoz8" sourceRef="Activity_0a64ksj" targetRef="Event_1c4zn7t" />
+    <bpmn:exclusiveGateway id="Gateway_0f38lc7">
+      <bpmn:incoming>Flow_0jolzxv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lusl5d</bpmn:outgoing>
+      <bpmn:outgoing>Flow_09h7a6s</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0jolzxv" sourceRef="Activity_1gf4n4v" targetRef="Gateway_0f38lc7" />
+    <bpmn:sequenceFlow id="Flow_0lusl5d" sourceRef="Gateway_0f38lc7" targetRef="Activity_0jwj731">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=seatAvailable = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_09h7a6s" sourceRef="Gateway_0f38lc7" targetRef="Activity_0a64ksj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=seatAvailable = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_0a64ksj" name="Melihat pesan tempat duduk habis">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_3jnllip" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_09h7a6s</bpmn:incoming>
+      <bpmn:outgoing>Flow_08udoz8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1deb8e1" sourceRef="Activity_0jwj731" targetRef="Activity_18c0zrp" />
+    <bpmn:userTask id="Activity_18c0zrp" name="Membayar">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_3h5jsj4" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1deb8e1</bpmn:incoming>
+      <bpmn:outgoing>Flow_14dgzls</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_14dgzls" sourceRef="Activity_18c0zrp" targetRef="Activity_0s4rlmf" />
+    <bpmn:serviceTask id="Activity_0s4rlmf" name="Mengonfirmasi pembayaran">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="confirmPayment" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14dgzls</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ojzsjt</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1ojzsjt" sourceRef="Activity_0s4rlmf" targetRef="Activity_09f8nuh" />
+    <bpmn:serviceTask id="Activity_09f8nuh" name="Mengurangi tempat duduk yang tersedia">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="reduceAvailableSeat" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ojzsjt</bpmn:incoming>
+      <bpmn:outgoing>Flow_028q208</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_028q208" sourceRef="Activity_09f8nuh" targetRef="Activity_1f18vyd" />
+    <bpmn:endEvent id="Event_1oqw6ag">
+      <bpmn:incoming>Flow_00mnu3b</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_00mnu3b" sourceRef="Activity_1f18vyd" targetRef="Event_1oqw6ag" />
+    <bpmn:userTask id="Activity_1f18vyd" name="Pesan sukses">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="form_pemesanan_sukses" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_028q208</bpmn:incoming>
+      <bpmn:outgoing>Flow_00mnu3b</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0jwj731" name="Membuat tagihan pembayaran">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="createPaymentBill" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lusl5d</bpmn:incoming>
+      <bpmn:outgoing>Flow_1deb8e1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_04djhx4" sourceRef="Activity_020lmgr" targetRef="Gateway_0f9lhi4" />
+    <bpmn:exclusiveGateway id="Gateway_0f9lhi4">
+      <bpmn:incoming>Flow_04djhx4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0n4o5hl</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ikj51v</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0n4o5hl" sourceRef="Gateway_0f9lhi4" targetRef="Activity_05xbwno">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=trainExists = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_05xbwno" name="Melihat pesan kereta tidak ada">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_230u6f1" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0n4o5hl</bpmn:incoming>
+      <bpmn:outgoing>Flow_1eief4a</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_150gy5v">
+      <bpmn:incoming>Flow_1eief4a</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1eief4a" sourceRef="Activity_05xbwno" targetRef="Event_150gy5v" />
+    <bpmn:sequenceFlow id="Flow_1ikj51v" sourceRef="Gateway_0f9lhi4" targetRef="Activity_1hqygn4">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=trainExists = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_1gf4n4v" name="Mengecek dan mengunci ketersediaan tempat duduk">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="checkAndLockTrain" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_15f88tg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jolzxv</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1hqygn4" name="Memilih kereta">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_1vb5v54" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ikj51v</bpmn:incoming>
+      <bpmn:outgoing>Flow_15f88tg</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:textAnnotation id="TextAnnotation_1n7jugz">
+      <bpmn:text>tempat duduk habis</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1duhglh" sourceRef="Flow_09h7a6s" targetRef="TextAnnotation_1n7jugz" />
+    <bpmn:textAnnotation id="TextAnnotation_0pshg1a">
+      <bpmn:text>tempat duduk tersedia</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0m6t8d1" sourceRef="Flow_0lusl5d" targetRef="TextAnnotation_0pshg1a" />
+    <bpmn:textAnnotation id="TextAnnotation_1u2wxsl">
+      <bpmn:text>kereta ada</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0j6zt7s" sourceRef="Flow_1ikj51v" targetRef="TextAnnotation_1u2wxsl" />
+    <bpmn:textAnnotation id="TextAnnotation_067ivzv">
+      <bpmn:text>kereta tidak ada</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_02prklo" sourceRef="Flow_0n4o5hl" targetRef="TextAnnotation_067ivzv" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_Pemesanan_Tiket">
+      <bpmndi:BPMNShape id="Participant_0ww7nvt_di" bpmnElement="Pemesanan_KA_Participant" isHorizontal="true">
+        <dc:Bounds x="129" y="80" width="1591" height="750" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1e47y7h_di" bpmnElement="Lane_1e47y7h" isHorizontal="true">
+        <dc:Bounds x="159" y="620" width="1561" height="210" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0m5u7mx_di" bpmnElement="Lane_0m5u7mx" isHorizontal="true">
+        <dc:Bounds x="159" y="440" width="1561" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1j3yg7l_di" bpmnElement="Lane_1j3yg7l" isHorizontal="true">
+        <dc:Bounds x="159" y="80" width="1561" height="360" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="222" y="342" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vl4xln_di" bpmnElement="Activity_1p7na05">
+        <dc:Bounds x="340" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ore84r_di" bpmnElement="Activity_020lmgr">
+        <dc:Bounds x="510" y="490" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c4zn7t_di" bpmnElement="Event_1c4zn7t">
+        <dc:Bounds x="1192" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1jvnkcl_di" bpmnElement="Gateway_0f38lc7" isMarkerVisible="true">
+        <dc:Bounds x="1025" y="505" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0839p6c_di" bpmnElement="Activity_0a64ksj">
+        <dc:Bounds x="1000" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lwa5dz_di" bpmnElement="Activity_18c0zrp">
+        <dc:Bounds x="1130" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12uj0ia_di" bpmnElement="Activity_0s4rlmf">
+        <dc:Bounds x="1260" y="690" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qal8mn_di" bpmnElement="Activity_09f8nuh">
+        <dc:Bounds x="1390" y="490" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1oqw6ag_di" bpmnElement="Event_1oqw6ag">
+        <dc:Bounds x="1542" y="332" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xqj88u_di" bpmnElement="Activity_1f18vyd">
+        <dc:Bounds x="1390" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b3p6gs_di" bpmnElement="Activity_0jwj731">
+        <dc:Bounds x="1000" y="690" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0f9lhi4_di" bpmnElement="Gateway_0f9lhi4" isMarkerVisible="true">
+        <dc:Bounds x="655" y="505" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ehilqi_di" bpmnElement="Activity_05xbwno">
+        <dc:Bounds x="630" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_150gy5v_di" bpmnElement="Event_150gy5v">
+        <dc:Bounds x="782" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fxferw_di" bpmnElement="Activity_1gf4n4v">
+        <dc:Bounds x="880" y="490" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0erxyt6_di" bpmnElement="Activity_1hqygn4">
+        <dc:Bounds x="780" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1n7jugz_di" bpmnElement="TextAnnotation_1n7jugz">
+        <dc:Bounds x="950" y="290" width="99.99999880417013" height="40.75235109717868" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0pshg1a_di" bpmnElement="TextAnnotation_0pshg1a">
+        <dc:Bounds x="950" y="630" width="99.99999880417013" height="40.75235109717868" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1u2wxsl_di" bpmnElement="TextAnnotation_1u2wxsl">
+        <dc:Bounds x="750" y="550" width="99.99999880417013" height="29.996082700532057" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_067ivzv_di" bpmnElement="TextAnnotation_067ivzv">
+        <dc:Bounds x="700" y="270" width="99.99999880417013" height="29.996082700532057" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1785rm4_di" bpmnElement="Flow_1785rm4">
+        <di:waypoint x="258" y="360" />
+        <di:waypoint x="340" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0u5vqhe_di" bpmnElement="Flow_0u5vqhe">
+        <di:waypoint x="440" y="360" />
+        <di:waypoint x="475" y="360" />
+        <di:waypoint x="475" y="530" />
+        <di:waypoint x="510" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15f88tg_di" bpmnElement="Flow_15f88tg">
+        <di:waypoint x="830" y="400" />
+        <di:waypoint x="830" y="530" />
+        <di:waypoint x="880" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08udoz8_di" bpmnElement="Flow_08udoz8">
+        <di:waypoint x="1100" y="170" />
+        <di:waypoint x="1192" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jolzxv_di" bpmnElement="Flow_0jolzxv">
+        <di:waypoint x="980" y="530" />
+        <di:waypoint x="1025" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lusl5d_di" bpmnElement="Flow_0lusl5d">
+        <di:waypoint x="1050" y="555" />
+        <di:waypoint x="1050" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09h7a6s_di" bpmnElement="Flow_09h7a6s">
+        <di:waypoint x="1050" y="505" />
+        <di:waypoint x="1050" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1deb8e1_di" bpmnElement="Flow_1deb8e1">
+        <di:waypoint x="1100" y="730" />
+        <di:waypoint x="1180" y="730" />
+        <di:waypoint x="1180" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14dgzls_di" bpmnElement="Flow_14dgzls">
+        <di:waypoint x="1230" y="350" />
+        <di:waypoint x="1310" y="350" />
+        <di:waypoint x="1310" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ojzsjt_di" bpmnElement="Flow_1ojzsjt">
+        <di:waypoint x="1360" y="730" />
+        <di:waypoint x="1440" y="730" />
+        <di:waypoint x="1440" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_028q208_di" bpmnElement="Flow_028q208">
+        <di:waypoint x="1440" y="490" />
+        <di:waypoint x="1440" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00mnu3b_di" bpmnElement="Flow_00mnu3b">
+        <di:waypoint x="1490" y="350" />
+        <di:waypoint x="1542" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04djhx4_di" bpmnElement="Flow_04djhx4">
+        <di:waypoint x="610" y="530" />
+        <di:waypoint x="655" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0n4o5hl_di" bpmnElement="Flow_0n4o5hl">
+        <di:waypoint x="680" y="505" />
+        <di:waypoint x="680" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1eief4a_di" bpmnElement="Flow_1eief4a">
+        <di:waypoint x="730" y="170" />
+        <di:waypoint x="782" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ikj51v_di" bpmnElement="Flow_1ikj51v">
+        <di:waypoint x="705" y="530" />
+        <di:waypoint x="750" y="530" />
+        <di:waypoint x="750" y="360" />
+        <di:waypoint x="780" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1duhglh_di" bpmnElement="Association_1duhglh">
+        <di:waypoint x="1050" y="357.5" />
+        <di:waypoint x="1025" y="331" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0m6t8d1_di" bpmnElement="Association_0m6t8d1">
+        <di:waypoint x="1050" y="623" />
+        <di:waypoint x="1033" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0j6zt7s_di" bpmnElement="Association_0j6zt7s">
+        <di:waypoint x="750" y="452.5" />
+        <di:waypoint x="793" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_02prklo_di" bpmnElement="Association_02prklo">
+        <di:waypoint x="680" y="357.5" />
+        <di:waypoint x="736" y="300" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

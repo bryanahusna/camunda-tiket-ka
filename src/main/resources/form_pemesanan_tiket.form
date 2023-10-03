@@ -1,0 +1,65 @@
+{
+  "components": [
+    {
+      "text": "# Pemesanan Tiket Kereta Api",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0o2gpex",
+        "columns": null
+      },
+      "id": "Field_0ny639j"
+    },
+    {
+      "label": "Nama",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0lepzu3",
+        "columns": null
+      },
+      "id": "Field_00gvw1o",
+      "key": "name"
+    },
+    {
+      "label": "Kota Asal",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_18b70d2",
+        "columns": null
+      },
+      "id": "Field_0jzxmdp",
+      "key": "origin"
+    },
+    {
+      "label": "Kota Tujuan",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0qtlwhy",
+        "columns": null
+      },
+      "id": "Field_1myh0gu",
+      "key": "destination"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Tanggal Keberangkatan",
+      "label": "Date time",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1rqnxai",
+        "columns": null
+      },
+      "id": "Field_0s8y27n",
+      "key": "departure_date"
+    }
+  ],
+  "type": "default",
+  "id": "form_pemesanan_tiket",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}

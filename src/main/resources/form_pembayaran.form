@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "text": "# Bayar Sekarang",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_1oi04np",
+        "columns": null
+      },
+      "id": "Field_0ywd2my"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1gi1jwv",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}

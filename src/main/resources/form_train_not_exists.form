@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "text": "# Kereta Tidak Ada",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0drr4o9",
+        "columns": null
+      },
+      "id": "Field_0dwv2pc"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0tp39zy",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}

@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "text": "# Pemesanan Tiket Sukses",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_1psdru5",
+        "columns": null
+      },
+      "id": "Field_1h6gjv6"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0h4ytnr",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}

@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "text": "# Tempat Duduk Kereta Habis",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0q65yd2",
+        "columns": null
+      },
+      "id": "Field_0lydtsh"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0a9wll3",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}

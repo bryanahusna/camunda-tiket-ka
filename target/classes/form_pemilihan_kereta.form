@@ -1,0 +1,47 @@
+{
+  "components": [
+    {
+      "text": "# Konfirmasi Kereta",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0ob0e0u",
+        "columns": null
+      },
+      "id": "Field_05y6e58"
+    },
+    {
+      "label": "Nama Kereta",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ukwqui",
+        "columns": null
+      },
+      "id": "Field_0nzuyha",
+      "key": "train_name",
+      "readonly": false,
+      "disabled": true
+    },
+    {
+      "label": "Harga",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0rosxk5",
+        "columns": null
+      },
+      "id": "Field_05n9hlf",
+      "key": "train_price",
+      "readonly": false,
+      "disabled": true
+    }
+  ],
+  "type": "default",
+  "id": "Form_01zvuy0",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.15.1"
+  },
+  "schemaVersion": 10
+}
